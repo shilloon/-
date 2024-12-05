@@ -1,0 +1,12 @@
+#include <iostream>
+
+int main()
+{
+
+    int age;
+
+    std::cin >> age;
+
+    std::cout << 2023 - age;
+
+}
