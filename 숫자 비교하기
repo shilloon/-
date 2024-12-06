@@ -1,0 +1,26 @@
+#include <iostream>
+
+int main()
+{
+
+    int num1, num2;
+
+    int res = 0;
+
+    std::cin >> num1;
+    std::cin >> num2;
+
+    if (num1 == num2) {
+
+        res = 1;
+        std::cout << res;
+
+    }
+    else {
+
+        res = -1;
+        std::cout << res;
+
+    }
+    return 0;
+}
