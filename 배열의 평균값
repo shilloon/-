@@ -1,0 +1,13 @@
+#include <string>
+#include <vector>
+#include <numeric> // accumulate 함수를 포함하고 있는 헤더파일
+ 
+using namespace std;
+ 
+double solution(vector<int> numbers) {
+    double answer = 0;
+    
+    answer = accumulate(numbers.begin(), numbers.end(), 0.0) / numbers.size(); //accumulate 전달받은 함수에 대해 누적된 합계나 누적된 결과를 반환하는 iterator 0.0을 적은 이유는 소수점 첫째자리까지 받기 위해
+    
+    return answer;
+}
