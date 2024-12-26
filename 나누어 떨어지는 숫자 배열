@@ -1,0 +1,49 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> isort(vector<int> arr){
+    
+    int temp = 0;
+    
+    for(int i  = 0; i<arr.size(); i++){
+        
+        for(int j = 0; j<arr.size(); j++){
+            
+            if(arr[i] < arr[j]){
+                
+                temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+                
+            }
+            
+        }
+        
+    }
+    
+    return arr;
+    
+}
+
+vector<int> solution(vector<int> arr, int divisor) {
+    
+    vector<int> answer;
+    
+    for(int i = 0; i<arr.size(); i++){
+        
+        if(arr[i] % divisor == 0){
+            
+            answer.push_back(arr[i]);
+            
+        }
+        
+    }
+    
+    if(answer.size() == 0)
+        answer.push_back(-1);
+    
+    return isort(answer);
+    
+}
