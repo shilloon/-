@@ -1,0 +1,50 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int gcd(int num1, int num2){
+    
+    int value = 0;
+    
+    if(num1 >= num2){
+        
+        for(int i = 1; i<=num2; i++){
+            
+            if(num1 % i == 0 && num2 % i == 0)
+                value = i;
+            
+        }
+        
+    }
+    else{
+        
+        for(int i = 1; i <= num1; i++){
+            
+            if(num1 % i == 0 && num2 % i == 0)
+                value = i;
+            
+        }
+        
+    }
+    return value;
+    
+}
+
+int lcm(int num1, int num2){
+    
+    int temp  = gcd(num1, num2);
+    
+    int value = (num1/temp) * (num2/temp) * temp; 
+    
+    return value;
+}
+
+vector<int> solution(int n, int m) {
+    vector<int> answer;
+    
+    answer.push_back(gcd(n, m));
+    answer.push_back(lcm(n, m));
+    
+    return answer;
+}
