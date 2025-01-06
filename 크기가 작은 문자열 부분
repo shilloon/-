@@ -1,0 +1,32 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(string t, string p) {
+    
+    int answer = 0;
+    int count  = 0;
+    
+    for(int i = p.size()-1; i<=t.size()-1; i++){
+        
+        string temp = "";
+        
+        for(int j = count; j<=i; j++){
+            
+            temp += t[j]; 
+            
+        }
+        
+        if(stoull(temp) <= stoull(p)){
+            
+            answer++;
+            
+        }
+        
+        count++;
+        
+    }
+    
+    return answer;
+}
