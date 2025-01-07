@@ -1,0 +1,44 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string s, int n) {
+    string answer = "";
+    int temp = 0;
+    
+    for(int i = 0; i<s.size(); i++){
+        
+        temp = s[i] + n;
+       
+        if(s[i] < 91 && s[i] > 64){
+            
+            if(temp >90){
+                
+                temp -= 26;
+                
+            }
+            
+            answer += temp;
+            
+        }
+        else if(s[i] > 96 && s[i] < 123){
+            
+            if(temp > 122){
+                
+                temp -= 26;
+                
+            }
+            
+            answer += temp;
+            
+        }
+        else if(s[i] == ' '){
+        
+            answer += s[i];
+            
+        }
+    }
+    
+    return answer;
+}
