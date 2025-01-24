@@ -1,0 +1,47 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+
+using namespace std;
+
+string solution(string X, string Y) {
+    string answer = "";
+    int tempX [10] = {0,0,0,0,0,0,0,0,0,0};
+    int tempY [10] = {0,0,0,0,0,0,0,0,0,0};
+    vector<int> storage;
+    
+    for(int i = 0; i < X.size(); i++)
+    {
+        
+        int temp = X[i] - '0';
+        tempX[temp]++;
+        
+    }
+    for(int i = 0; i< Y.size(); i++)
+    {
+        
+        int temp = Y[i] - '0';
+        tempY[temp]++;
+        
+    }    
+    
+    for(int i = 9; i>=0; i--)
+    {
+     
+        int commonnum = min(tempX[i], tempY[i]);
+        if(commonnum > 0)
+        {
+            
+            answer += string(commonnum, '0' + i);
+            
+        }
+       
+    }
+    
+    if(answer.empty())
+        return "-1";
+    else if(answer[0] == '0')
+        return "0";
+    return answer;
+}
