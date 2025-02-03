@@ -1,0 +1,67 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int CountKey(vector<string> keymap,string targets)
+{
+    vector<int> countstr;
+    int cnt = 101;
+    int temp = 0;
+    int answer = 0;
+    
+    for(int i = 0; i<targets.size(); i++)
+    {
+        
+        for(int j = 0; j<keymap.size(); j++)
+        {
+            cnt = 101;
+            for(int z = 0; z < keymap[j].size(); z++)
+            {
+                
+                if(targets[i] == keymap[j][z])
+                {
+                    
+                   countstr.push_back(min(cnt, z+1));
+                    break;
+                    
+                }
+                
+            }
+            
+        }
+        if(countstr.empty())
+        {
+            return -1;
+        }
+        temp = countstr[0];
+        for(int j = 0; j < countstr.size() - 1; j++)
+        {
+            
+            temp = min(temp, countstr[j+1]);
+            
+        }
+        countstr.clear();
+        countstr.shrink_to_fit();
+        answer += temp;
+        
+    }
+
+    return answer;
+
+}
+
+vector<int> solution(vector<string> keymap, vector<string> targets) {
+    vector<int> answer;
+    
+    
+    for(int i = 0; i<targets.size(); i++)
+    {
+            
+        answer.push_back(CountKey(keymap, targets[i])); 
+        
+    }
+    
+    return answer;
+}
