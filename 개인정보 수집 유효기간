@@ -1,0 +1,35 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(string today, vector<string> terms, vector<string> privacies) {
+    vector<int> answer;
+    int todaycount  = stoi(today.substr(0,4)) * 12 * 28 + stoi(today.substr(5,2)) * 28 + stoi(today.substr(8,2)); 
+    int privaciescount = 0;
+    int termscount = 0;
+    
+    for(int i = 0; i<privacies.size(); i++)
+    {
+    
+        privaciescount = stoi(privacies[i].substr(0,4)) * 12 * 28 + stoi(privacies[i].substr(5,2)) * 28 + stoi(privacies[i].substr(8,2));
+        
+        for(int j = 0; j<terms.size(); j++)
+        {
+            
+            if(privacies[i].substr(11,1) == string(1, terms[j][0]))
+            {
+                
+                termscount = privaciescount + (stoi(terms[j].substr(2)) * 28) ;                
+
+            }
+            
+        }
+        
+        if(todaycount >= termscount)
+            answer.push_back(i+1);
+        
+    }
+    
+    return answer;
+}
