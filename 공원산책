@@ -1,0 +1,81 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(vector<string> park, vector<string> routes) {
+    vector<int> currentLocation;
+    
+    for (int i = 0; i < park.size(); i++) 
+    {
+        for (int j = 0; j < park[i].size(); j++) 
+        {   
+            if (park[i][j] == 'S')
+            {
+                currentLocation = {i, j};
+                break;
+            }
+        }
+    }
+    
+    const vector<pair<char, pair<int, int>>> direction = 
+    {
+        {'N', {-1, 0}},
+        {'S', {1, 0}},
+        {'W', {0, -1}},
+        {'E', {0, 1}}
+    };
+
+    for(const string& route : routes)
+    {
+        char dir = route[0];
+        int step = stoi(route.substr(2));
+        int newRow = currentLocation[0];
+        int newCol = currentLocation[1];
+        
+        for(const auto& d : direction)
+        {
+            if(d.first == dir)
+            {
+                
+                int dRow = d.second.first;
+                int dCol = d.second.second;
+                bool IsMove = true;
+                
+                for(int i = 1; i <= step; i++)
+                {
+                    
+                    int tempRow = currentLocation[0] + i * dRow;
+                    int tempCol = currentLocation[1] + i * dCol;
+                    
+                    if(tempRow < 0 || tempRow >= park.size() ||
+                       tempCol < 0 || tempCol >= park[0].size() ||
+                      park[tempRow][tempCol] == 'X')
+                    {
+                        
+                        IsMove = false;
+                        break;
+                        
+                    }
+                        
+                }
+                
+                if(IsMove)
+                {
+                    
+                    newRow = currentLocation[0] + step * dRow;
+                    newCol = currentLocation[1] + step * dCol;
+                    
+                }
+                break;
+            }
+            
+            
+        }
+        
+        currentLocation = {newRow, newCol};
+        
+    }  
+    
+    return currentLocation;
+}
