@@ -1,0 +1,36 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(string s) {
+    vector<int> answer;
+    int cnt = 0;
+    int cnt0 = 0;
+    while(s.size() > 1)
+    {
+        cnt++;
+        string binary = "";
+        for(int i = 0; i<s.size(); i++)
+        {
+               if(s[i] == '0')
+                   cnt0++;
+                else
+                    binary += s[i];
+        }   
+        
+        int len = binary.size();
+        s = "";
+        while(len > 0)
+        {
+            s += to_string(len % 2); 
+            len /= 2;
+        }
+        
+    }
+    
+    answer.push_back(cnt);
+    answer.push_back(cnt0);
+    
+    return answer;
+}
