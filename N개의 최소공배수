@@ -1,0 +1,40 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int gcd(int a, int b)
+{
+    while(b!=0)
+    {
+        int c = a %b;
+        
+        a = b;
+        b = c;
+    }
+    return a;
+}
+
+int lcm(int a, int b)
+{
+    return a * b / gcd(a, b);
+}
+
+int solution(vector<int> arr) {
+
+    if(arr.size() == 1)
+        return arr[0];
+    int answer = 0;
+    int temp = lcm(arr[0], arr[1]);
+    
+    if(arr.size() > 2)
+    {
+        for(int i = 2; i<arr.size(); i++)
+        {
+            answer = lcm(temp, arr[i]);
+            temp = answer;
+        }
+    }
+    
+    return temp;
+}
